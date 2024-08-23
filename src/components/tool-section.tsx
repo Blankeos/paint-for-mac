@@ -42,7 +42,11 @@ ToolSection.Tool = (props: VoidProps<ToolProps>) => {
   return (
     <Show
       when={_props.options}
-      fallback={<button class="rounded p-1 focus:outline-none focus:ring">{_props.icon}</button>}
+      fallback={
+        <button class="rounded p-1 transition will-change-transform focus:outline-none focus:ring active:scale-95">
+          {_props.icon}
+        </button>
+      }
     >
       <Popover
         floatingOptions={{
@@ -55,7 +59,9 @@ ToolSection.Tool = (props: VoidProps<ToolProps>) => {
           <div
             class={`flex items-center gap-1 rounded p-1 group-focus:ring ${_props.orientation === 'vertical' ? 'flex-col' : 'flex-row'}`}
           >
-            {_props.icon}
+            <span class="transition will-change-transform group-active:scale-95">
+              {_props.icon}
+            </span>
             <span class="relative flex h-4 w-4 items-center justify-center">
               <IconChevronRight class="absolute rotate-90" width={12} height={12} />
             </span>
