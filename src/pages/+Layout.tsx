@@ -1,9 +1,10 @@
+import { DrawingContextProvider } from '@/stores/drawing.context';
 import '@/styles/App.css';
 
 import { type FlowProps, createSignal } from 'solid-js';
 
 export default function RootLayout(props: FlowProps) {
-  return <>{props.children}</>;
+  return <DrawingContextProvider>{props.children}</DrawingContextProvider>;
 }
 
 function Counter() {

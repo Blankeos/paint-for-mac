@@ -1,15 +1,20 @@
 import {
   IconClipboard,
   IconCopy,
+  IconFloppyDisk,
   IconPaintBrush,
   IconScissors,
   IconSizes,
 } from '@/assets/icons/icons';
+import { Canvas } from '@/components/canvas';
 import { ToolSection } from '@/components/tool-section';
+import { useDrawingContext } from '@/stores/drawing.context';
 import { invoke } from '@tauri-apps/api/tauri';
 import { createSignal } from 'solid-js';
 
 export default function Page() {
+  const { canvasSize, setCanvasSize } = useDrawingContext();
+
   const [greetMsg, setGreetMsg] = createSignal('');
   const [name, setName] = createSignal('');
 
@@ -19,8 +24,8 @@ export default function Page() {
   }
 
   return (
-    <div class="flex h-screen flex-col">
-      <nav class="flex border-b">
+    <div class="flex h-screen min-w-[600px] flex-col">
+      <nav class="flex h-max flex-shrink-0 border-b">
         <ToolSection title="Clipboard" containerClassName="p-4" className="flex gap-x-2">
           <ToolSection.Tool
             title="Copy"
@@ -85,6 +90,31 @@ export default function Page() {
           <ToolSection.Tool icon={<IconClipboard />} options={[]} />
         </ToolSection>
       </nav>
+
+      <div class="flex-1 overflow-hidden bg-gray-100">
+        <Canvas class="border bg-white" />
+      </div>
+
+      <footer class="flex gap-x-1 p-0.5 text-xs">
+        <div class="flex items-center px-2">
+          <input
+            class="w-8 bg-transparent outline-none"
+            value={canvasSize.width}
+            onInput={(e) => setCanvasSize({ width: parseInt(e.target.value) })}
+          />
+          x
+          <input
+            class="w-8 bg-transparent text-end outline-none"
+            value={canvasSize.height}
+            onInput={(e) => setCanvasSize({ height: parseInt(e.target.value) })}
+          />
+        </div>
+        <div class="h-full w-[1px] bg-neutral-200" />
+        <div class="flex h-full items-center gap-x-1 px-1">
+          <IconFloppyDisk class="" width={14} height={14} />
+          <span>Size: 1.3MB</span>
+        </div>
+      </footer>
     </div>
   );
 }

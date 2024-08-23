@@ -7,6 +7,7 @@
 export { default as IconChevronRight } from './chevron-right.svg';
 export { default as IconClipboard } from './clipboard.svg';
 export { default as IconCopy } from './copy.svg';
+export { default as IconFloppyDisk } from './floppy-disk.svg';
 export { default as IconLogo } from './logo.svg';
 export { default as IconPaintBrush } from './paint-brush.svg';
 export { default as IconScissors } from './scissors.svg';
