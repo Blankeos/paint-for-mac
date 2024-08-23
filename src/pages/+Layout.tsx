@@ -3,18 +3,7 @@ import '@/styles/App.css';
 import { type FlowProps, createSignal } from 'solid-js';
 
 export default function RootLayout(props: FlowProps) {
-  return (
-    <div>
-      <nav class="flex items-center justify-center gap-x-5 py-5">
-        <a href="/">Home</a>
-        <span>{' | '}</span>
-        <a href="/dashboard">Dashboard</a>
-        <span>{' | '}</span>
-        <Counter />
-      </nav>
-      {props.children}
-    </div>
-  );
+  return <>{props.children}</>;
 }
 
 function Counter() {
